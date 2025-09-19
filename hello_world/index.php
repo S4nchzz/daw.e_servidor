@@ -7,10 +7,18 @@
 </head>
 <body>
     <?php
-        $HELLO = "Hello world";
+        $HELLO = "Hello world <br/>";
+
+        class Obj {
+            function hello() {
+                return "Hello from Obj <br/>";
+            }
+        }
 
         for ($i = 0; $i < 5; $i++) {
             echo "$HELLO <br/>";
+            $obj = new Obj();
+            echo $obj->hello();
         }
     ?>
 </body>
