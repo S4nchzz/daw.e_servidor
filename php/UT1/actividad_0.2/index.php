@@ -38,4 +38,19 @@
     $stringPlayers = array_map('strval', $jugador);
     echo 'La alineacion del equipo esta compuesta por'.$stringPlayers;
   }
+
+  function ej2() {
+    $matrix = array(
+      "basico" => array(1, 14, 8, 3),
+      "medio" => array(6, 19, 7, 2),
+      "perfeccionamiento" => array(3, 13, 4, 1)
+    );
+    
+    echo "Alumnos por nivel: ";
+    echo "Basico: ".array_sum($matrix["basico"])."<br/>";
+    echo "Medio: ".array_sum($matrix["medio"])."<br/>";
+    echo "Perfeccionamiento: ".array_sum($matrix["perfeccionamiento"]);
+  }
+
+  ej2();
 ?>
