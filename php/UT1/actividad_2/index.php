@@ -45,11 +45,22 @@
       "medio" => array(6, 19, 7, 2),
       "perfeccionamiento" => array(3, 13, 4, 1)
     );
+
+    $types = array("basico", "medio", "perfeccionamiento");
     
-    echo "Alumnos por nivel: ";
-    echo "Basico: ".array_sum($matrix["basico"])."<br/>";
-    echo "Medio: ".array_sum($matrix["medio"])."<br/>";
-    echo "Perfeccionamiento: ".array_sum($matrix["perfeccionamiento"]);
+    $ingles = 0;
+    $typeIteration = 0;
+    for ($i = 0; $i < count($matrix); $i++) {
+      if ($i == count($matrix)) {
+        $typeIteration++;
+        $i = 0;
+      }
+      
+      $ingles += $matrix[$types[$i]][$typeIteration];
+      echo $matrix[$types[$i]][$typeIteration]."<br/>";
+    }
+
+    echo $ingles;
   }
 
   ej2();
