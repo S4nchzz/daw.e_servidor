@@ -40,27 +40,21 @@
 
     foreach($gente as $i => $familia) {
         echo "Familia$i";
-        echo '<ul>';
-            echo '<li>';
-            echo 'Familia: '.$familia['Familia'];
-            echo '</li>';
-
-            echo '<li>';
-            echo 'Padre: '.$familia['Padre'];
-            echo '</li>';
-
-            echo '<li>';
-            echo 'Madre: '.$familia['Madre'];
-            echo '</li>';
-
-            echo '<li>';
+            echo '<ul>';
+            foreach($familia as $key => $items) {
+                if (!is_array($items)) {
+                    echo '<li>';
+                    echo $key.': '.$items;
+                    echo '</li>';
+                };
+    
+            }
             
+            echo '<li>';
             foreach($familia['Hijos'] as $hijo) {
                 echo 'Hijos: '.$hijo.', ';
-            }
-
+            };
             echo '</li>';
-
         echo '</ul>';
     }
 ?>
