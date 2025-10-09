@@ -47,7 +47,6 @@
                     echo $key.': '.$items;
                     echo '</li>';
                 };
-    
             }
             
             echo '<li>';
