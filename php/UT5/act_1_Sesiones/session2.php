@@ -6,7 +6,7 @@
             echo '<h5>Name input value not found</h5>';
             return;
         }
-
+        
         $_SESSION['name'] = $_POST['name'];
 
         echo <<<_END
