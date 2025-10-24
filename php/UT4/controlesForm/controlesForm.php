@@ -13,7 +13,7 @@
                     <input type='text' name='apellidos' placeholder="Apellidos"/>
                     <input type='number' name='edad' placeholder="Edad" max="110" min="1"/>
                     <select name='profesion'>
-                        <option value='profesor'>Profesor</option>
+                        <option value='profesor'>Profesor</option>  
                         <option value='informatico'>Informatico</option>
                         <option value='programador'>Programador</option>
                     </select>
