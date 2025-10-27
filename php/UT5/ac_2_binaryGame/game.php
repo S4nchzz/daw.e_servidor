@@ -21,16 +21,20 @@
                 <title>GAME</title>
             </head>
             <body>
-                <div style='display: flex;'>
         _END;
 
         global $BINARY;
         getRandomCombination();
-        echo '<h5>';
+        echo "<div>";
             foreach ($BINARY as $key => $value) {
-                echo $value;
+                echo "<span style='font-size: 50px'>$value </span>";
             }
-        echo '<h5>';
+        echo "</div>";
+
+        echo <<<_END
+            <div style='display: flex;'>
+        _END;
+
         foreach ($BINARY as $key => $value) {
             if ($value == 1) {
                 echo "<img style='border: 1px solid black' src='./img/card_$key.png'/>";
