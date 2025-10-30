@@ -1,9 +1,21 @@
 <?php
     session_start();
-
     if (isset($_SESSION['tries'])) $_SESSION['tries'] = [];
 
-    $colors = ['red', 'blue', 'yellow', 'green'];
+    $colorList = ['red', 'blue', 'yellow', 'green'];
+    $colors = [];
+
+    function generateColorList() {
+        global $colorList;
+        global $colors;
+        for ($i = 0; $i < (int)$_POST['diff']; $i++) {
+            echo $i;
+            array_push($colors, $colorList[rand(0, count($colorList) - 1)]);
+        }
+    }
+
+    generateColorList();
+
     shuffle($colors);
 
     $_SESSION['colors'] = $colors;
