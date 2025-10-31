@@ -2,11 +2,11 @@
     session_start();
     if (isset($_SESSION['tries'])) $_SESSION['tries'] = [];
 
-    $colorList = ['red', 'lightblue', 'yellow', 'green', 'cyan', 'orange', 'plum', 'pink'];
+    $colorList = ['red', 'lightblue', 'yellow', 'green', 'cyan', 'orange', 'lavender', 'pink'];
     $_SESSION['colorList'] = $colorList;
     
     if (isset($_POST['diffCol'])) {
-        $colorList = array_slice($colorList, (int)$_POST['diffCol'] - count($colorList));
+        $colorList = array_slice($colorList, count($colorList) - (int)$_POST['diffCol']);
     }
     
     
