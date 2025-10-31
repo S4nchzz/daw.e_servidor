@@ -58,16 +58,15 @@
             return;
         }
 
-        echo "
-            <br/>
-            <br/>
-            <form action='game.php' method='post'>
-                <input type='submit' name='solveColor' value='red'/>
-                <input type='submit' name='solveColor' value='blue'/>
-                <input type='submit' name='solveColor' value='yellow'/>
-                <input type='submit' name='solveColor' value='green'/>
-            </form>
-        ";
+        global $colors;
+        echo "<br/><br/>";
+        
+        echo "<form action='game.php' method='post' style='display: flex; gap: 10px;'>";
+        foreach ($_SESSION['colorList'] as $color) {
+            echo "<input style='background-color: $color; cursor: pointer; font-weight: bold; border: 0; padding: 10px 20px 10px 20px; border-radius: 10px;' type='submit' name='solveColor' value='".strtoupper($color)."'/>";
+        }
+        echo "</form>";
+
     }
 
     if (!$end) {
