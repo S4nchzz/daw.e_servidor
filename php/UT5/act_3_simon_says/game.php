@@ -22,7 +22,7 @@
             if (isset($_SESSION['tries'][$key]) && $_SESSION['tries'][$key] == $value) {
                 echo "<div style='background-color: $value; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black;'></div>";
             } else if (!isset($_SESSION['tries'][$key])){
-                echo "<div style='background-color: black; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black;'></div>";
+                echo "<div style='display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold; font-family: Segoe UI; background-color: black; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black; text-size: 2rem; text-align: center;'><p>?</p></div>";
             } else {
                 echo "<div style='background-color:".$_SESSION['tries'][$key]."; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black;'></div>";
                 $end = true;
