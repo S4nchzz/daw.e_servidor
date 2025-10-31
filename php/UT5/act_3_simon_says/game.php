@@ -2,15 +2,21 @@
     session_start();
 
     $end = false;
+    $colors = [];
     function printCircles() {
         if (!isset($_SESSION['tries'])) {
             $_SESSION['tries'] = [];
         }
 
         if (isset($_POST['solveColor'])) array_push($_SESSION['tries'], $_POST['solveColor']);
+        global $colors;
         $colors = $_SESSION['colors'];
-
+        
         global $end;
+        if (isset($_SESSION['tries']) && count($_SESSION['tries']) == count($colors)) {
+            $end = true;
+        }
+
         echo "<div style='display: flex; gap: 10px'>";
         foreach ($colors as $key => $value) {
             if (isset($_SESSION['tries'][$key]) && $_SESSION['tries'][$key] == $value) {
@@ -35,8 +41,13 @@
 
     function solve() {
         global $end;
+        global $colors;
 
-        if ($end) {
+        if ($end && isset($_SESSION['tries']) && count($_SESSION['tries']) == count($colors)) {
+            echo "<h1>Has ganado!</h1>";
+            printCorrectPattern();
+            return;
+        } else if ($end) {
             echo "<h1>Fallaste, la combinacion correcta era: </h1>";
             printCorrectPattern();
             return;
