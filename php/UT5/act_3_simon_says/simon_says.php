@@ -9,7 +9,6 @@
         $colorList = array_slice($colorList, count($colorList) - (int)$_POST['diffCol']);
     }
     
-    
     $colors = [];
 
     function generateColorList() {

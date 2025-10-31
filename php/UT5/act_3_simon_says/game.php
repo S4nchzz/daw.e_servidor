@@ -17,6 +17,7 @@
             $end = true;
         }
 
+        var_dump($colors);
         echo "<div style='display: flex; gap: 10px; flex-wrap: wrap;'>";
         foreach ($colors as $key => $value) {
             if (isset($_SESSION['tries'][$key]) && $_SESSION['tries'][$key] == $value) {
@@ -39,6 +40,14 @@
         echo "</div>";
     }
 
+    function printReplay() {
+        echo "
+                <form action='difficulty.php' method='get'>
+                    <input type='submit' value='Volver a jugar'/>
+                </form>
+            ";
+    }
+
     function solve() {
         global $end;
         global $colors;
@@ -46,15 +55,12 @@
         if ($end && isset($_SESSION['tries']) && count($_SESSION['tries']) == count($colors)) {
             echo "<h1>Has ganado!</h1>";
             printCorrectPattern();
+            printReplay();
             return;
         } else if ($end) {
             echo "<h1>Fallaste, la combinacion correcta era: </h1>";
             printCorrectPattern();
-            echo "
-                <form action='difficulty.php' method='get'>
-                    <input type='submit' value='Volver a jugar'/>
-                </form>
-            ";
+            printReplay();
             return;
         }
 
@@ -63,7 +69,7 @@
         
         echo "<form action='game.php' method='post' style='display: flex; gap: 10px;'>";
         foreach ($_SESSION['colorList'] as $color) {
-            echo "<input style='background-color: $color; cursor: pointer; font-weight: bold; border: 0; padding: 10px 20px 10px 20px; border-radius: 10px;' type='submit' name='solveColor' value='".strtoupper($color)."'/>";
+            echo "<input style='background-color: $color; cursor: pointer; font-weight: bold; border: 0; padding: 10px 20px 10px 20px; border-radius: 10px;' type='submit' name='solveColor' value='$color'/>";
         }
         echo "</form>";
 
