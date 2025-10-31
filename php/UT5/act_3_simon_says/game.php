@@ -17,7 +17,7 @@
             $end = true;
         }
 
-        echo "<div style='display: flex; gap: 10px'>";
+        echo "<div style='display: flex; gap: 10px; flex-wrap: wrap;'>";
         foreach ($colors as $key => $value) {
             if (isset($_SESSION['tries'][$key]) && $_SESSION['tries'][$key] == $value) {
                 echo "<div style='background-color: $value; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black;'></div>";
@@ -50,6 +50,11 @@
         } else if ($end) {
             echo "<h1>Fallaste, la combinacion correcta era: </h1>";
             printCorrectPattern();
+            echo "
+                <form action='difficulty.php' method='get'>
+                    <input type='submit' value='Volver a jugar'/>
+                </form>
+            ";
             return;
         }
 
