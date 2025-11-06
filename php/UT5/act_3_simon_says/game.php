@@ -13,6 +13,8 @@
         $colors = $_SESSION['colors'];
         
         global $end;
+        echo count($_SESSION['tries']);
+        echo count($colors);
         if (isset($_SESSION['tries']) && count($_SESSION['tries']) == count($colors)) {
             $end = true;
         }
@@ -42,17 +44,26 @@
 
     function printReplay() {
         echo "
-                <form action='difficulty.php' method='get'>
+                <form action='start.php' method='get'>
                     <input type='submit' value='Volver a jugar'/>
                 </form>
             ";
+    }
+
+    function checkResult() {
+        global $colors;
+        foreach ($colors as $key => $value) {
+            if ($_SESSION['tries'][$key] != $value) return false;
+        }
+
+        return true;
     }
 
     function solve() {
         global $end;
         global $colors;
 
-        if ($end && isset($_SESSION['tries']) && count($_SESSION['tries']) == count($colors)) {
+        if ($end && isset($_SESSION['tries']) && count($_SESSION['tries']) == count($colors) && checkResult()) {
             echo "<h1>Has ganado!</h1>";
             printCorrectPattern();
             printReplay();
