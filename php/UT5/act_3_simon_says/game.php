@@ -59,19 +59,40 @@
         return true;
     }
 
+    function appendDBResult($result) {
+        $userID = $_SESSION['userID'];
+        if (!isset($userID)) return;
+        $un = 'root';
+        $db = 'bdsimon';
+        $hn = 'localhost';
+        $pw = '';
+
+        $conn = new mysqli($hn, $un, $pw, $db);
+        if ($conn->connect_error) die('Fatal error');
+
+        $insert = $conn->prepare("INSERT INTO JUGADAS(codigousu, acierto) VALUES (?, ?)");
+        $insert->bind_param('ii', $userID, $result);
+        
+        $insert->execute();
+        return;
+    }
+
     function solve() {
         global $end;
         global $colors;
 
-        if ($end && isset($_SESSION['tries']) && count($_SESSION['tries']) == count($colors) && checkResult()) {
-            echo "<h1>Has ganado!</h1>";
+        if ($end) {
             printCorrectPattern();
             printReplay();
+        }
+
+        if ($end && isset($_SESSION['tries']) && count($_SESSION['tries']) == count($colors) && checkResult()) {
+            echo "<h1>Has ganado!</h1>";
+            appendDBResult(true);
             return;
         } else if ($end) {
             echo "<h1>Fallaste, la combinacion correcta era: </h1>";
-            printCorrectPattern();
-            printReplay();
+            appendDBResult(false);
             return;
         }
 

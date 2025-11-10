@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     function printForm() {
         echo <<<_END
             <html>
@@ -34,6 +36,8 @@
             if (!$result) echo 'Usuario no encontrado';
 
             if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $_SESSION['userID'] = $row['Codigo'];
                 header("Location: start.php");
                 exit();
             }
