@@ -26,6 +26,9 @@
                         </select>
                         <input type='submit' value='Jugar'/>
                     </form>
+                    <form action="stats.php" method="get">
+                        <input type="submit" value="Ver estadisticas"/>
+                    </form>
                 </div>
             </body>
         </html>
