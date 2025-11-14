@@ -13,6 +13,10 @@
                         <input type="text" placeholder="Contraseña" name="pass"/>
                         <input type="submit" value="Entrar"/>
                     </form>
+
+                    <form action="register.php" method="get">
+                        <input type="submit" value="Registrarse"/>
+                    </form>
                 <body/>
             </html>
             _END;
