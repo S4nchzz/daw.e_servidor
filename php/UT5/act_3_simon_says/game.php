@@ -60,6 +60,11 @@
     }
 
     function appendDBResult($result) {
+        if (!isset($_SESSION['colors']) || !isset($_SESSION['nColors'])) {
+            echo "Colors or nCOlors not defined";
+            return;
+        }
+
         $userID = $_SESSION['userID'];
         if (!isset($userID)) return;
         $un = 'root';
@@ -70,8 +75,9 @@
         $conn = new mysqli($hn, $un, $pw, $db);
         if ($conn->connect_error) die('Fatal error');
 
-        $insert = $conn->prepare("INSERT INTO JUGADAS(codigousu, acierto) VALUES (?, ?)");
-        $insert->bind_param('ii', $userID, $result);
+        $insert = $conn->prepare("INSERT INTO JUGADAS(codigousu, nColores, nCirculos, acierto) VALUES (?, ?, ? ,?)");
+        $nCirculos = count($_SESSION['colors']);
+        $insert->bind_param('iiii', $userID, $nCirculos, $_SESSION['nColors'], $result);
         
         $insert->execute();
         return;

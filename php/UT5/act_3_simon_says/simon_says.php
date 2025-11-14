@@ -7,6 +7,7 @@
     
     if (isset($_POST['diffCol'])) {
         $colorList = array_slice($colorList, count($colorList) - (int)$_POST['diffCol']);
+        $_SESSION['nColors'] = $_POST['diffCol'];
     }
     
     $colors = [];
